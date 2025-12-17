@@ -43,3 +43,13 @@ To measure test coverage:
 ```sh
 go test -v -cover .
 ```
+
+## License
+
+```
+SPDX-License-Identifier: GPL-3.0-or-later
+```
+
+## History
+
+Adapted from [ooni/probe-cli/internal/runtimex](https://github.com/ooni/probe-cli/blob/647b03f4270eb758106523fe6273e3ebdbcd599c/internal/runtimex/runtimex.go) and inspired by [m-lab/go/rtx](https://github.com/m-lab/go/blob/bff8a3a44a1a38ebec6db2521826fdb6c50fe975/rtx/rtx.go).
