@@ -1,5 +1,7 @@
 # Golang Runtime Extensions
 
+[![GoDoc](https://pkg.go.dev/badge/github.com/bassosimone/runtimex)](https://pkg.go.dev/github.com/bassosimone/runtimex) [![Build Status](https://github.com/bassosimone/runtimex/actions/workflows/go.yml/badge.svg)](https://github.com/bassosimone/runtimex/actions) [![codecov](https://codecov.io/gh/bassosimone/runtimex/branch/main/graph/badge.svg)](https://codecov.io/gh/bassosimone/runtimex)
+
 The `runtimex` Go package contains helpers for code paths:
 
 1. that are not expected to fail;
