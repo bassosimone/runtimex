@@ -1,4 +1,26 @@
+//
 // SPDX-License-Identifier: GPL-3.0-or-later
+//
+// Adapted from: https://github.com/ooni/probe-cli/blob/647b03f4270eb758106523fe6273e3ebdbcd599c/internal/runtimex/runtimex.go
+//
+
+// Package runtimex contains helpers for code paths that are not expected to fail and
+// where failure indicates a programmer error or an unrecoverable condition.
+//
+// # When to use what
+//
+// Assert: For enforcing invariants in library code. Document the invariant and its
+// justification in a comment above the assertion. Use these for conditions that should
+// be impossible if the program is correct.
+//
+// PanicOnErrorN: For unwrapping `(value, ..., error)` returns where the error cannot
+// occur in correct usage but ignoring the error feels sloppy.
+//
+// LogFatalOnErrorN: In main() functions when you want to log and exit.
+//
+// # History
+//
+// This package was originally inspired by [github.com/m-lab/go/rtx].
 package runtimex
 
 import (
