@@ -24,6 +24,8 @@
 // already contain sufficient context - use the optional message parameters only for
 // simple qualification like "loading config", not for complex formatting.
 //
+// # History
+//
 // This package was originally inspired by [github.com/m-lab/go/rtx].
 package runtimex
 
