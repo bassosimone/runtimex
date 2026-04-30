@@ -102,13 +102,13 @@ func TestPanicOnError3(t *testing.T) {
 }
 
 func TestLogFatalOnError(t *testing.T) {
-	// Save original logFatal and restore after each test
-	originalLogFatal := logFatal
-	defer func() { logFatal = originalLogFatal }()
+	// Save original LogFatalFunc and restore after each test
+	originalLogFatal := LogFatalFunc
+	defer func() { LogFatalFunc = originalLogFatal }()
 
 	var fatalCalled bool
 	var fatalValue any
-	logFatal = func(v ...any) {
+	LogFatalFunc = func(v ...any) {
 		fatalCalled = true
 		fatalValue = v[0]
 	}

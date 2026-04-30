@@ -121,8 +121,15 @@ func PanicOnError3[T1, T2, T3 any](v1 T1, v2 T2, v3 T3, err error) (T1, T2, T3) 
 	return v1, v2, v3
 }
 
-// logFatal is a variable so we can replace it during testing.
-var logFatal = log.Fatal
+// LogFatalFunc is the function that [LogFatalOnError0], [LogFatalOnError1],
+// [LogFatalOnError2], and [LogFatalOnError3] invoke when they receive a
+// non-nil error. The default is [log.Fatal], which logs and calls
+// `os.Exit(1)`, bypassing every pending defer.
+//
+// Replace from `main` before starting goroutines to change the failure
+// behavior — for example, to call `deferexit.Panic(1)` after logging so
+// that deferred cleanup actually runs. Not safe to mutate concurrently.
+var LogFatalFunc = log.Fatal
 
 // LogFatalOnError0 exits with a fatal error if err is not nil.
 //
@@ -133,7 +140,7 @@ var logFatal = log.Fatal
 //	}
 func LogFatalOnError0(err error) {
 	if err != nil {
-		logFatal(err)
+		LogFatalFunc(err)
 	}
 }
 
@@ -148,7 +155,7 @@ func LogFatalOnError0(err error) {
 //	}
 func LogFatalOnError1[T1 any](v1 T1, err error) T1 {
 	if err != nil {
-		logFatal(err)
+		LogFatalFunc(err)
 	}
 	return v1
 }
@@ -164,7 +171,7 @@ func LogFatalOnError1[T1 any](v1 T1, err error) T1 {
 //	}
 func LogFatalOnError2[T1, T2 any](v1 T1, v2 T2, err error) (T1, T2) {
 	if err != nil {
-		logFatal(err)
+		LogFatalFunc(err)
 	}
 	return v1, v2
 }
@@ -180,7 +187,7 @@ func LogFatalOnError2[T1, T2 any](v1 T1, v2 T2, err error) (T1, T2) {
 //	}
 func LogFatalOnError3[T1, T2, T3 any](v1 T1, v2 T2, v3 T3, err error) (T1, T2, T3) {
 	if err != nil {
-		logFatal(err)
+		LogFatalFunc(err)
 	}
 	return v1, v2, v3
 }
